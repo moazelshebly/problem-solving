@@ -13,4 +13,14 @@ public class Haystack {
 		}
 		return haystack.indexOf(needle);
 	}
+
+	public static int strStr1(String haystack, String needle) {
+		if (needle == null || needle.isEmpty()) {
+			return 0;
+		}
+		if (!haystack.contains(needle)) {
+			return -1;
+		}
+		return haystack.split(needle)[0].length();
+	}
 }
