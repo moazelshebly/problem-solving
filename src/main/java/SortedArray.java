@@ -22,4 +22,30 @@ public abstract class SortedArray {
 		}
 		return nums.length - duplicates;
 	}
+
+	/**
+	 * https://leetcode.com/problems/search-insert-position/
+	 * Given an array of sorted and distinct integers, returns the index of the [target] integer.
+	 * If [target] is not in the array, returns where it should be inserted such that the array stays sorted.
+	 *
+	 * @param nums   The ascendingly-sorted array of distinct integers.
+	 * @param target The sought integer.
+	 * @return The index of [target] in the array or where it should be inserted.
+	 */
+	static public int searchInsert(int[] nums, int target) {
+		if (nums.length == 1) {
+			if (nums[0] == target || nums[0] > target) {
+				return 0;
+			}
+			return 1;
+		}
+		int middle = nums.length / 2;
+		if (nums[middle] == target) {
+			return middle;
+		}
+		if (nums[middle] > target) {
+			return searchInsert(Arrays.copyOfRange(nums, 0, middle), target);
+		}
+		return middle + searchInsert(Arrays.copyOfRange(nums, middle, nums.length), target);
+	}
 }
